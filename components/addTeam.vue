@@ -26,7 +26,6 @@ export default {
         name: this.name,
         players: [this.player1, this.player2]
       }
-      console.log('emit add team event here', newTeam)
       this.$emit('addTeam', newTeam)
     }
   }
