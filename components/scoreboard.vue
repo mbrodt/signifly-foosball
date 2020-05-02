@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p>Note: the scores should be read from the perspective of the row</p>
+    <h2>Scoreboard</h2>
     <table>
-      <tr>
+      <tr class="border-b border-gray-400">
         <th></th>
         <th
-          class="text-2xl"
+          class="px-6 py-3 text-left text-base leading-4 font-medium text-gray-600 uppercase tracking-wider"
           v-for="header in headers"
           :key="header"
           :id="header"
@@ -13,14 +13,24 @@
           {{ header }}
         </th>
       </tr>
-      <tr v-for="team in teams" :key="team.name">
-        <td>{{ team.name }}</td>
+      <tr
+        class="border-b border-gray-400"
+        v-for="team in teams"
+        :key="team.name"
+      >
         <td
-          class="text-right"
+          class="px-6 py-6 text-left text-base leading-4 font-medium text-gray-600 uppercase tracking-wider"
+        >
+          {{ team.name }}
+        </td>
+        <td
+          class="text-center"
           v-for="value in getTeamScores(team.name)"
           :key="value.id"
         >
           <input
+            class="w-10 font-semibold text-xl bg-transparent"
+            :class="getInputColors(value)"
             @change="updateScores(team.name, $event)"
             type="text"
             :value="value"
@@ -28,6 +38,10 @@
         </td>
       </tr>
     </table>
+
+    <p class="text-gray-600">
+      Note: the scores should be read from the perspective of the row
+    </p>
   </div>
 </template>
 
@@ -83,6 +97,21 @@ export default {
       const teamScores = this.scores.find(score => score.name === team)
       const { name, ...scores } = teamScores
       return scores
+    },
+    getInputColors(result) {
+      let res = 'unfinished'
+
+      const split = result.split('-')
+      if (split[0] === '10') {
+        res = 'win'
+      } else if (split[1] === '10') {
+        res = 'loss'
+      }
+      return {
+        'text-red-400': res === 'loss',
+        'text-green-400': res === 'win',
+        'text-gray-700': res === 'unfinished'
+      }
     }
   }
 }
