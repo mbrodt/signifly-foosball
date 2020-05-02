@@ -1,20 +1,20 @@
 <template>
-  <div>
+  <div class="max-w-8xl mx-auto">
+    <logo />
     <scoreboard :teams="teams" :scores="scores" @updateScores="updateScores" />
-    <teams :teams="teams" @addTeam="addTeam" />
-    <leaderboard />
+    <teams :teams="teams" :scores="scores" @addTeam="addTeam" />
   </div>
 </template>
 
 <script>
+import logo from '@/components/logo'
 import scoreboard from '@/components/scoreboard'
 import teams from '@/components/teams'
-import leaderboard from '@/components/leaderboard'
 export default {
   components: {
+    logo,
     scoreboard,
-    teams,
-    leaderboard
+    teams
   },
   data() {
     return {
@@ -72,6 +72,7 @@ export default {
     updateScores(newScores) {
       this.scores = newScores
     },
+
     addTeam(newTeam) {
       const updatedTeams = [...this.teams, newTeam]
       let newScore = {
@@ -83,6 +84,7 @@ export default {
           [team.name]: '0-0'
         }
       })
+      newScore[newTeam.name] = '-'
 
       const updatedScores = this.scores.map(score => {
         return {
@@ -90,9 +92,8 @@ export default {
           [newTeam.name]: '0-0'
         }
       })
-      console.log('newScore:', newScore)
       updatedScores.push(newScore)
-      this.scores = updatedScores
+      this.updateScores(updatedScores)
       this.teams = updatedTeams
     }
   }
