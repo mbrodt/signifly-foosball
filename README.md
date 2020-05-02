@@ -15,11 +15,13 @@
 - Deploy to Netlify
 - Clear data / refresh tournament
 
-Assumptions/Limitations:
-There can only be 1 active tournament
-Every team is part of the active tournament
-Each team has 2 players
-Everyone can edit the scores
+## Assumptions/Limitations:
+
+- There can only be 1 active tournament
+- Every team is part of the active tournament
+- Each team has 2 players
+- Everyone can edit the scores
+- A game is considered won if one of the teams has 10 goals
 
 ## Build Setup
 
