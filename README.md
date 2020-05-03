@@ -6,14 +6,11 @@
 
 - Setup Hasura and get the data through subscriptions
 - Send each change back to hasura
-- Clear add team form inputs on submission
-- Empty scoreboard input field on click, and update without having to enter
-- Style add team form
 - Make responsive
 - Animations
-- Setup purge CSS
-- Deploy to Netlify
 - Clear data / refresh tournament
+- Setup purge CSS
+- Clean code, change naming, remove logs etc
 
 ## Assumptions/Limitations:
 
