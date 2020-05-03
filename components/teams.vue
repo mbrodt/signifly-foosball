@@ -1,21 +1,21 @@
 <template>
   <div>
     <h2 class="text-4xl text-blue-500">Teams</h2>
-    <div class="grid grid-cols-3 gap-8">
+    <transition-group name="flip-list" tag="div" class="grid grid-cols-3 gap-8">
       <div v-for="(team, index) in orderedTeams" :key="team.name">
         <div
           class="border-b-2 border-gray-500 w-8 text-center text-xl font-bold text-gray-700 leading-snug mb-2"
         >
           #{{ index + 1 }}
         </div>
-        <div class="bg-white py-8 px-8 shadow-2xl">
+        <div class="bg-white py-8 px-8 shadow-2xl rounded">
           <div class="flex justify-between items-center mb-2">
             <h3 class="text-3xl font-semibold">{{ team.name }}</h3>
             <ul class="flex space-x-4">
               <li
                 class="text-xl flex items-center"
                 v-for="player in team.players"
-                :key="player.id"
+                :key="player"
               >
                 <svg
                   class="w-5 h-5 mr-1 text-gray-600"
@@ -37,7 +37,7 @@
           <results :results="getTeamResults(team).results" />
         </div>
       </div>
-    </div>
+    </transition-group>
     <add-team @addTeam="addTeam" />
   </div>
 </template>
@@ -99,3 +99,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.flip-list-move {
+  transition: transform 1s;
+}
+</style>
