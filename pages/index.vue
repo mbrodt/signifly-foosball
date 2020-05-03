@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-8xl mx-auto">
+  <div class="max-w-8xl mx-auto pb-24">
     <logo />
     <scoreboard :teams="teams" :scores="scores" @updateScores="updateScores" />
     <teams :teams="teams" :scores="scores" @addTeam="addTeam" />
