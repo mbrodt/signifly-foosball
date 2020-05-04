@@ -102,6 +102,6 @@ export default {
 
 <style>
 .flip-list-move {
-  transition: transform 1s;
+  transition: transform 2s;
 }
 </style>
