@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2>Add team form</h2>
     <form class="flex space-x-4 items-end" @submit.prevent="addTeam">
       <div>
         <label class="block text-gray-700 text-sm font-bold mb-1" for="name">
           Team name
         </label>
         <input
+          ref="name"
           class="form-input"
           id="name"
           v-model="name"
@@ -44,12 +44,14 @@
         Add team
       </button>
     </form>
-    {{ name }} {{ player1 }} {{ player2 }}
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    teams: Array
+  },
   data() {
     return {
       name: '',
@@ -59,14 +61,24 @@ export default {
   },
   methods: {
     addTeam() {
-      const newTeam = {
-        name: this.name,
-        players: [this.player1, this.player2]
+      const teamName = this.name
+      let newTeam = {
+        name: teamName,
+        players: [this.player1, this.player2],
+        [teamName]: '-'
       }
+      this.teams.forEach(team => {
+        newTeam = {
+          ...newTeam,
+          [team.name]: '0-0'
+        }
+      })
       this.name = ''
       this.player1 = ''
       this.player2 = ''
       this.$emit('addTeam', newTeam)
+      // Focus the first input on submit, to make it easier to add the next team
+      this.$refs.name.focus()
     }
   }
 }
