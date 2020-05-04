@@ -29,7 +29,7 @@
           :key="value.id"
         >
           <input
-            class="w-10 font-semibold text-xl bg-transparent focus:outline-none focus:shadow-outline"
+            class="w-12 font-semibold text-xl bg-transparent focus:outline-none focus:shadow-outline"
             :class="getInputColors(value)"
             @change="updateScores(team.name, $event)"
             type="text"
