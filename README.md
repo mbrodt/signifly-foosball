@@ -6,10 +6,9 @@
 
 - Setup Hasura and get the data through subscriptions
 - Send each change back to hasura
+- Clear data / refresh tournament
 - Make responsive
 - Animations
-- Clear data / refresh tournament
-- Setup purge CSS
 - Clean code, change naming, remove logs etc
 
 ## Assumptions/Limitations:
@@ -19,6 +18,8 @@
 - Each team has 2 players
 - Everyone can edit the scores
 - A game is considered won if one of the teams has 10 goals
+
+{
 
 ## Build Setup
 

@@ -11,7 +11,16 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "@nuxtjs/apollo": "^4.0.0-rc19",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link-http": "^1.5.17",
+    "apollo-link-ws": "^1.0.20",
+    "graphql-tag": "^2.10.3",
+    "isomorphic-fetch": "^2.2.1",
+    "nuxt": "^2.10.2",
+    "subscriptions-transport-ws": "^0.9.16",
+    "ws": "^7.2.5"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
