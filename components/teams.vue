@@ -2,13 +2,13 @@
   <div class="mt-12">
     <add-team @addTeam="addTeam" :teams="teams" />
     <div v-if="teams.length > 0" class="mt-8">
-      <h2 class="text-gray-700 font-semibold text-4xl">
+      <h2 class="text-gray-700 font-semibold text-2xl sm:text-4xl">
         Teams
       </h2>
       <transition-group
         name="flip-list"
         tag="div"
-        class="grid grid-cols-3 gap-8"
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-8"
       >
         <div v-for="(team, index) in orderedTeams" :key="team.name">
           <div
@@ -17,11 +17,15 @@
             #{{ index + 1 }}
           </div>
           <div class="bg-white py-8 px-8 shadow-2xl rounded">
-            <div class="flex justify-between items-center mb-2">
-              <h3 class="text-3xl block text-gray-800 font-semibold">
+            <div
+              class="flex flex-col md:flex-row justify-between items-center mb-2"
+            >
+              <h3
+                class="text-3xl block text-gray-800 font-semibold leading-tight"
+              >
                 {{ team.name }}
               </h3>
-              <ul class="flex space-x-4">
+              <ul class="flex space-x-4 my-2 md:ml-2">
                 <li
                   class="text-xl flex items-center"
                   v-for="player in team.players"

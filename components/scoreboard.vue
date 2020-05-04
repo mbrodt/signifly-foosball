@@ -1,5 +1,5 @@
 <template>
-  <div v-if="teams.length > 0">
+  <div class="overflow-x-auto" v-if="teams.length > 0">
     <table>
       <tr class="border-b border-gray-400">
         <th></th>

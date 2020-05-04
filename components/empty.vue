@@ -1,16 +1,15 @@
 <template>
   <div>
-    <h2 class="text-gray-700 font-semibold text-4xl">
+    <h2 class="text-gray-700 font-semibold text-2xl sm:text-4xl">
       There are no teams yet!
-      <span class="text-2xl block text-gray-600 font-normal">
+      <span class="text-xl sm:text-2xl block text-gray-600 font-normal">
         Get started by adding some</span
       >
     </h2>
     <div>
       <svg
-        class="w-1/3"
+        class="w-full sm:w-1/2 lg:w-1/2 xl:w-1/3 mt-8"
         width="628"
-        height="491"
         viewBox="0 0 628 491"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

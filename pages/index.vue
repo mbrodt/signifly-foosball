@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-8xl mx-auto pb-24">
+  <div class="max-w-5xl lg:max-w-8xl mx-auto pb-24 px-8 lg:px-24 xl:px-8">
     <logo />
     <div v-if="teams.length === 0 && !$apollo.loading">
       <empty />

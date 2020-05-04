@@ -2,13 +2,6 @@
 
 > A Foosball tournament system to keep track of results
 
-## TODO
-
-- Make responsive
-- Hide secret key
-- Animations
-- Clean code, change naming, remove logs etc
-
 ## Assumptions/Limitations:
 
 - There can only be 1 active tournament

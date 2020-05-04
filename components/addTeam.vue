@@ -1,13 +1,16 @@
 <template>
   <div>
-    <form class="flex space-x-4 items-end" @submit.prevent="addTeam">
+    <form
+      class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:items-end"
+      @submit.prevent="addTeam"
+    >
       <div>
         <label class="block text-gray-700 text-sm font-bold mb-1" for="name">
           Team name
         </label>
         <input
           ref="name"
-          class="form-input"
+          class="form-input w-full"
           id="name"
           v-model="name"
           type="text"
@@ -19,7 +22,7 @@
           First player
         </label>
         <input
-          class="form-input"
+          class="form-input w-full"
           id="player1"
           v-model="player1"
           type="text"
@@ -31,7 +34,7 @@
           Second player
         </label>
         <input
-          class="form-input"
+          class="form-input w-full"
           id="player2"
           v-model="player2"
           type="text"
@@ -39,7 +42,7 @@
         />
       </div>
       <button
-        class="text-center rounded  bg-gray-800 px-4 py-2 font-semibold text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 -mt-1"
+        class="text-center rounded bg-gray-800 px-4 py-2 font-semibold text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 sm:-mt-1"
       >
         Add team
       </button>

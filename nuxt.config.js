@@ -45,6 +45,7 @@ export default {
       default: {
         httpEndpoint: 'https://signifly-foosball.herokuapp.com/v1/graphql',
         httpLinkOptions: {
+          // This should be hidden in a .env file
           headers: {
             'x-hasura-admin-secret': 'coolsecret'
           }
