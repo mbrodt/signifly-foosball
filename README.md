@@ -5,6 +5,7 @@
 ## TODO
 
 - Make responsive
+- Hide secret key
 - Animations
 - Clean code, change naming, remove logs etc
 
