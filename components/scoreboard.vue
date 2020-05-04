@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h2>Scoreboard</h2>
+  <div v-if="teams.length > 0">
     <table>
       <tr class="border-b border-gray-400">
         <th></th>
@@ -25,31 +24,31 @@
         </td>
         <td
           class="text-center"
-          v-for="value in getTeamScores(team.name)"
-          :key="value.id"
+          v-for="matchString in getTeamScores(team)"
+          :key="matchString.id"
         >
           <input
             class="w-12 font-semibold text-xl bg-transparent focus:outline-none focus:shadow-outline"
-            :class="getInputColors(value)"
-            @change="updateScores(team.name, $event)"
+            :class="getInputColors(matchString)"
+            @change="updateTeams(team.name, $event)"
             type="text"
-            :value="value"
+            :value="matchString"
           />
         </td>
       </tr>
     </table>
 
-    <p class="text-gray-600">
+    <p class="text-gray-600 mt-4">
       Note: the scores should be read from the perspective of the row
     </p>
   </div>
 </template>
 
 <script>
+import { getResult } from '@/utilities/helpers'
 export default {
   props: {
-    teams: Array,
-    scores: Array
+    teams: Array
   },
   computed: {
     headers() {
@@ -57,7 +56,7 @@ export default {
     }
   },
   methods: {
-    updateScores(team, event) {
+    updateTeams(teamToUpdate, event) {
       // Get the header of this table data field, since this is the opponent of the team being updated
       const cellIndex = event.target.parentNode.cellIndex
       const opponentName = this.headers[cellIndex - 1]
@@ -71,46 +70,47 @@ export default {
         .reverse()
         .join('-')
 
-      const newScores = this.scores.map(score => {
+      const updatedTeams = this.teams.map(team => {
         // If the score is for the team currently being updated, update the score on the opponent key.
-        if (score.name === team) {
+        if (team.name === teamToUpdate) {
           return {
-            ...score,
+            ...team,
             [opponentName]: updatedScore
           }
 
           // If the score is for the opponent, update their score with the reversed result
-        } else if (score.name === opponentName) {
+        } else if (team.name === opponentName) {
           return {
-            ...score,
-            [team]: reversedScore
+            ...team,
+            [teamToUpdate]: reversedScore
           }
-
           // Otherwise, return the unedited score
         } else {
-          return score
+          return team
         }
       })
-      this.$emit('updateScores', newScores)
+      this.$emit('updateTeams', updatedTeams)
     },
     getTeamScores(team) {
-      const teamScores = this.scores.find(score => score.name === team)
-      const { name, ...scores } = teamScores
+      let scores = []
+
+      // Loop through all the teams. If the looped team is the same as the one we're getting the score for, add a "-"
+      // Otherwise, get the result value of the match between the team we're getting the score for, and the looped team
+      this.teams.forEach(loopTeam => {
+        if (loopTeam.name === team.name) {
+          scores.push('-')
+        } else {
+          scores.push(team[loopTeam.name])
+        }
+      })
       return scores
     },
-    getInputColors(result) {
-      let res = 'unfinished'
-
-      const split = result.split('-')
-      if (split[0] === '10') {
-        res = 'win'
-      } else if (split[1] === '10') {
-        res = 'loss'
-      }
+    getInputColors(matchString) {
+      const result = getResult(matchString)
       return {
-        'text-red-400': res === 'loss',
-        'text-green-400': res === 'win',
-        'text-gray-700': res === 'unfinished'
+        'text-red-400': result === 'loss',
+        'text-green-400': result === 'win',
+        'text-gray-700': result === 'unfinished'
       }
     }
   }
