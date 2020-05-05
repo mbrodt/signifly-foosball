@@ -3,12 +3,6 @@
     <logo />
     <div v-if="$apollo.loading" class="my-8">
     Loading...
-      <hollow-dots-spinner
-        :animation-duration="1500"
-        :dot-size="20"
-        :dots-num="3"
-        color="#4a5568"
-      />
     </div>
     <div v-if="teams.length === 0 && !$apollo.loading">
       <empty />
@@ -29,7 +23,6 @@
 </template>
 
 <script>
-import { HollowDotsSpinner } from 'epic-spinners'
 import { GET_TEAMS, RESET_TOURNAMENT, UPDATE_TEAMS } from '@/graphql/index'
 import logo from '@/components/logo'
 import scoreboard from '@/components/scoreboard'
@@ -40,8 +33,7 @@ export default {
     logo,
     scoreboard,
     teams,
-    empty,
-    HollowDotsSpinner
+    empty
   },
   apollo: {
     teams: {
