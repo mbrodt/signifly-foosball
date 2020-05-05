@@ -22,6 +22,9 @@ The frontend is built with Nuxt, using Vue for functionality and Tailwind CSS fo
 
 The backend is made with Hasura and hosted on Heroku. The database has a single table, "teams", with just 1 row and 1 column. This field contains all the team data and results. In the future, this could definitely be optimized.
 
+Note: The first load can be a bit slow, since the Heroku backend goes to sleep if there is no activity for a certain amount of time. Just wait a few seconds, and it'll load the backend data.
+
+
 ## Assumptions/Limitations:
 
 - There can only be 1 active tournament
